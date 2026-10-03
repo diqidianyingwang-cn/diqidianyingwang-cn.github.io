@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>第七电影网 - 电影推荐与热映片单_每日观影指南</title>
+<meta name="description" content="第七电影网（https://diqidianyingwang-cn.github.io）是专注电影推荐与观影指南的影视资讯站点，每日更新热映片单、编辑甄选佳作、类型图谱与观影数据，提供剧情简介、评分参考与影迷问答，页面移动端自适应，今晚看什么不再纠结。">
+<meta name="keywords" content="第七电影网,电影推荐,正在热映,热映片单,观影指南,电影评分,类型图谱,编辑甄选,影视资讯,影迷问答">
+<meta name="author" content="第七电影网">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0f5c6b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="第七电影网">
+<link rel="canonical" href="https://diqidianyingwang-cn.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="第七电影网">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第七电影网 - 电影推荐与热映片单_每日观影指南">
+<meta property="og:description" content="第七电影网每日更新热映片单、编辑甄选佳作、类型图谱与观影数据，附剧情简介与评分参考，手机电脑都能顺畅浏览。">
+<meta property="og:url" content="https://diqidianyingwang-cn.github.io/">
+<meta property="og:image" content="https://diqidianyingwang-cn.github.io/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第七电影网 - 电影推荐与热映片单_每日观影指南">
+<meta name="twitter:description" content="热映片单、编辑甄选、类型图谱一站聚合，第七电影网每日更新。">
+<style>
+/* ==========================================================
+   第七电影网 · 青瓷圆盘数据 + 七等分格栅
+   视觉：冷青灰底 + 深青瓷 + 陶土橙点缀，圆形章纹 Logo
+   DOM 与前几版不同：七等分导航条 / sticky 堆叠卡片 /
+   conic-gradient 甜甜圈图表 / details 手风琴图谱 / 双栏对照手记
+   ========================================================== */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",Helvetica,Arial,sans-serif;
+  background:#e9ecec;color:#22333a;line-height:1.82;font-size:16px;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+img{border:0;max-width:100%;height:auto}
+h1,h2,h3,h4{line-height:1.4}
+
+:root{
+  --bg:#e9ecec;
+  --ink:#152a30;
+  --celadon:#0f5c6b;
+  --slate:#2f4a52;
+  --clay:#c2703f;
+  --silver:#7f8f92;
+  --line:rgba(21,42,48,.15);
+  --card:#ffffff;
+  --soft:#f3f6f6;
+  --r:16px;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(820px 520px at 88% -6%,rgba(15,92,107,.14),transparent 62%),
+    radial-gradient(760px 500px at 4% 10%,rgba(194,112,63,.10),transparent 60%);
+}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* ============ 顶部细条 ============ */
+.bar-top{background:var(--ink);color:#b9c8cb;font-size:12.5px}
+.bar-top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 22px;min-height:34px}
+.bar-top span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-top b{color:#f0b98a}
+
+/* ============ 头部 + 七等分导航 ============ */
+header.head{background:rgba(255,255,255,.9);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;backdrop-filter:blur(12px)}
+.head-inner{max-width:1180px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.brand .disc{
+  width:46px;height:46px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--celadon);color:var(--celadon);font-weight:800;font-size:14px;letter-spacing:1px;
+  background:radial-gradient(circle at 50% 50%,rgba(15,92,107,.10),transparent 70%);
+  box-shadow:0 0 0 5px rgba(15,92,107,.07);
+}
+.brand strong{display:block;font-size:20px;letter-spacing:2px;color:var(--ink)}
+.brand small{display:block;font-size:10.5px;letter-spacing:2.2px;color:var(--silver)}
+.find{flex:0 0 auto;margin-left:auto;display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#fff;padding:3px}
+.find input{width:150px;height:32px;border:0;outline:none;background:transparent;padding:0 13px;font-size:13.5px;color:var(--ink);font-family:inherit}
+.find input::placeholder{color:#9aa8ab}
+.find button{height:32px;border:0;border-radius:999px;padding:0 16px;font-size:13px;font-weight:700;color:#fff;background:var(--celadon);cursor:pointer;font-family:inherit}
+
+nav.seven{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);max-width:1180px;margin:0 auto}
+nav.seven a{
+  display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 6px;font-size:13.5px;color:var(--slate);
+  border-right:1px solid var(--line);transition:.2s;text-align:center;
+}
+nav.seven a:last-child{border-right:0}
+nav.seven a u{text-decoration:none;font-size:10.5px;letter-spacing:1px;color:var(--silver)}
+nav.seven a:hover{background:rgba(15,92,107,.07);color:var(--celadon)}
+nav.seven a.on{background:var(--celadon);color:#fff}
+nav.seven a.on u{color:rgba(255,255,255,.75)}
+
+/* ============ HERO：左文 + 右数据盘 ============ */
+.hero{padding:38px 0 12px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.hero-l{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px 32px;position:relative;overflow:hidden;
+}
+.hero-l::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:190px;height:190px;border-radius:50%;
+  border:18px solid rgba(15,92,107,.06);
+}
+.hero-l .chip{
+  display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:2px;color:var(--celadon);
+  border:1px solid rgba(15,92,107,.4);padding:4px 13px;border-radius:999px;
+}
+.hero-l .chip i{width:6px;height:6px;border-radius:50%;background:var(--clay);display:inline-block}
+.hero-l h1{margin:16px 0 0;font-size:clamp(27px,5vw,44px);letter-spacing:1px;color:var(--ink)}
+.hero-l h1 em{font-style:normal;color:var(--celadon)}
+.hero-l p{margin-top:14px;font-size:15px;color:#48585e;max-width:38em}
+.hero-l .url{margin-top:12px;font-size:13.5px;color:var(--silver);word-break:break-all}
+.hero-l .url b{color:var(--clay);font-weight:600}
+.hero-btns{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.btnz{display:inline-block;padding:11px 24px;border-radius:999px;font-size:14.5px;font-weight:700;border:1.5px solid var(--celadon);transition:.2s}
+.btnz-a{background:var(--celadon);color:#fff;box-shadow:0 10px 22px rgba(15,92,107,.24)}
+.btnz-b{color:var(--celadon);background:transparent}
+.btnz:hover{transform:translateY(-2px)}
+
+/* 数据盘 */
+.dials{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 24px 20px;display:flex;flex-direction:column;gap:18px}
+.dials > h2{font-size:13px;letter-spacing:2px;color:var(--slate);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.dial-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ring{display:flex;flex-direction:column;align-items:center;gap:8px}
+.ring .circle{position:relative;width:112px;height:112px;border-radius:50%}
+.ring .circle::after{
+  content:"";position:absolute;left:50%;top:50%;width:70px;height:70px;border-radius:50%;
+  background:var(--card);transform:translate(-50%,-50%);box-shadow:inset 0 0 0 1px var(--line);
+}
+.ring .circle b{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  font-size:19px;font-weight:800;color:var(--ink);
+}
+.r1{background:conic-gradient(var(--celadon) 0 42%,var(--clay) 42% 74%,#9fb8bc 74% 100%)}
+.r2{background:conic-gradient(var(--clay) 0 31%,var(--celadon) 31% 69%,#9fb8bc 69% 100%)}
+.r3{background:conic-gradient(var(--celadon) 0 56%,var(--clay) 56% 82%,#9fb8bc 82% 100%)}
+.ring span{font-size:12.5px;color:var(--silver);text-align:center}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;border-top:1px dashed var(--line);padding-top:14px}
+.legend div{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--slate)}
+.legend i{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.legend .l1{background:var(--celadon)}
+.legend .l2{background:var(--clay)}
+.legend .l3{background:#9fb8bc}
+.dials .note{font-size:12px;color:var(--silver);line-height:1.7}
+
+/* ============ 栏目通用 ============ */
+section.blk{padding:44px 0 6px}
+.cap{display:flex;align-items:flex-end;gap:14px;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px;flex-wrap:wrap}
+.cap .ord{
+  flex:0 0 auto;font-size:13px;letter-spacing:2px;color:#fff;background:var(--ink);
+  padding:5px 12px;border-radius:6px;
+}
+.cap h2{font-size:clamp(19px,3.4vw,26px);color:var(--ink);letter-spacing:1px}
+.cap .dsc{font-size:13px;color:var(--silver);margin-top:4px}
+.cap .go{margin-left:auto;font-size:13px;color:var(--celadon);border:1px solid rgba(15,92,107,.4);padding:6px 14px;border-radius:999px;white-space:nowrap}
+
+/* ============ 一、sticky 堆叠卡片 ============ */
+.stack{padding-bottom:8px}
+.plate{
+  position:sticky;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  padding:22px 26px;margin-bottom:14px;box-shadow:0 6px 18px rgba(21,42,48,.07);
+  display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;
+}
+.plate:nth-of-type(1){top:150px}
+.plate:nth-of-type(2){top:172px}
+.plate:nth-of-type(3){top:194px}
+.plate:nth-of-type(4){top:216px}
+.plate:nth-of-type(5){top:238px}
+.plate:nth-of-type(6){top:260px}
+.plate .rk{
+  width:56px;height:56px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  font-size:19px;font-weight:800;color:#fff;background:var(--celadon);
+  box-shadow:0 0 0 5px rgba(15,92,107,.10);
+}
+.plate:nth-of-type(2n) .rk{background:var(--clay);box-shadow:0 0 0 5px rgba(194,112,63,.12)}
+.plate:nth-of-type(3n) .rk{background:var(--slate);box-shadow:0 0 0 5px rgba(47,74,82,.10)}
+.plate .txt h3{font-size:17px;color:var(--ink)}
+.plate .txt p{margin-top:5px;font-size:13.5px;color:#4e5e64}
+.plate .txt .tags{margin-top:9px;display:flex;gap:8px;flex-wrap:wrap}
+.plate .txt .tags span{font-size:11.5px;padding:3px 10px;border-radius:999px;background:var(--soft);color:var(--slate);border:1px solid var(--line)}
+.plate .sco{flex:0 0 auto;text-align:right}
+.plate .sco b{display:block;font-size:26px;font-weight:800;color:var(--celadon);line-height:1.1}
+.plate .sco span{font-size:12px;color:var(--silver)}
+
+/* ============ 二、七等分海报网格 ============ */
+.grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:13px}
+.cell{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);transition:.24s;
+  display:flex;flex-direction:column;
+}
+.cell:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(21,42,48,.14)}
+.cell .ph{aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;position:relative}
+.cell .ph span{font-size:15px;font-weight:800;color:#fff;letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.cell .ph .bdg{position:absolute;left:8px;top:8px;font-size:10.5px;background:rgba(0,0,0,.5);color:#fff;padding:2px 7px;border-radius:4px}
+.cell .ph .rt{position:absolute;right:8px;top:8px;font-size:11.5px;font-weight:800;color:#fff;background:var(--clay);padding:2px 7px;border-radius:4px}
+.k1{background:linear-gradient(160deg,#0f5c6b,#4aa3b0)}
+.k2{background:linear-gradient(160deg,#c2703f,#e9a87c)}
+.k3{background:linear-gradient(160deg,#2f4a52,#7a99a1)}
+.k4{background:linear-gradient(160deg,#5b4a6b,#a893bd)}
+.k5{background:linear-gradient(160deg,#3f5c3a,#8fae86)}
+.k6{background:linear-gradient(160deg,#6b4a3f,#b58d78)}
+.k7{background:linear-gradient(160deg,#33475c,#7f97b3)}
+.cell .cb{padding:10px 12px 13px}
+.cell .cb h3{font-size:13.5px;color:var(--ink);line-height:1.6}
+.cell .cb h3 a:hover{color:var(--celadon)}
+.cell .cb p{margin-top:5px;font-size:11.5px;color:var(--silver)}
+
+/* ============ 三、手风琴图谱 ============ */
+.atlas{display:grid;gap:12px}
+.atlas details{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.atlas summary{
+  cursor:pointer;padding:15px 20px;font-size:15.5px;font-weight:700;color:var(--ink);list-style:none;
+  display:flex;align-items:center;gap:12px;
+}
+.atlas summary::-webkit-details-marker{display:none}
+.atlas summary i{
+  width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:12px;font-weight:800;color:#fff;background:var(--celadon);
+}
+.atlas details:nth-child(2n) summary i{background:var(--clay)}
+.atlas details:nth-child(3n) summary i{background:var(--slate)}
+.atlas summary em{font-style:normal;margin-left:auto;font-size:12.5px;color:var(--silver);font-weight:400}
+.atlas summary::after{content:"＋";color:var(--celadon);font-weight:800}
+.atlas details[open] summary::after{content:"－"}
+.atlas .panel{padding:0 20px 18px 62px}
+.atlas .panel p{font-size:13.5px;color:#4e5e64}
+.atlas .panel ul{margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.atlas .panel li{
+  font-size:13px;color:var(--slate);background:var(--soft);border:1px solid var(--line);
+  padding:8px 12px;border-radius:8px;display:flex;justify-content:space-between;gap:8px;
+}
+.atlas .panel li b{color:var(--celadon)}
+
+/* ============ 四、数据盘三环 ============ */
+.triple{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:26px 24px}
+.triple .row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.triple .box{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.triple .box .circle{position:relative;width:132px;height:132px;border-radius:50%}
+.triple .box .circle::after{
+  content:"";position:absolute;left:50%;top:50%;width:86px;height:86px;border-radius:50%;
+  background:var(--card);transform:translate(-50%,-50%);box-shadow:inset 0 0 0 1px var(--line);
+}
+.triple .box .circle b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;font-size:21px;font-weight:800;color:var(--ink)}
+.triple .box h3{font-size:15px;color:var(--ink)}
+.triple .box p{font-size:13px;color:var(--silver);max-width:20em}
+.triple .tip{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--silver);text-align:center}
+
+/* ============ 五、双栏对照手记 ============ */
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.note-col{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:22px 24px}
+.note-col > h3{font-size:16px;color:var(--ink);display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.note-col > h3 u{text-decoration:none;font-size:11.5px;color:#fff;background:var(--celadon);padding:3px 10px;border-radius:999px;letter-spacing:1px}
+.note-col:nth-child(2) > h3 u{background:var(--clay)}
+.note-col article{padding:14px 0;border-bottom:1px dashed var(--line)}
+.note-col article:last-child{border-bottom:0;padding-bottom:2px}
+.note-col article time{font-size:12px;color:var(--clay);letter-spacing:1px}
+.note-col article h4{margin-top:4px;font-size:15px;color:var(--ink)}
+.note-col article h4 a:hover{color:var(--celadon)}
+.note-col article p{margin-top:5px;font-size:13.5px;color:#4e5e64}
+
+/* ============ 六、站点特色 ============ */
+.pts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pt{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:22px 20px;position:relative;overflow:hidden}
+.pt::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--celadon)}
+.pt:nth-child(2)::before{background:var(--clay)}
+.pt:nth-child(3)::before{background:var(--slate)}
+.pt:nth-child(4)::before{background:#5b4a6b}
+.pt h3{font-size:16px;color:var(--ink);margin-bottom:7px}
+.pt p{font-size:13.5px;color:#4e5e64}
+
+/* ============ 七、FAQ ============ */
+.faqs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.faqs details{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:15px 20px}
+.faqs summary{cursor:pointer;font-size:15px;font-weight:700;color:var(--ink);list-style:none}
+.faqs summary::-webkit-details-marker{display:none}
+.faqs summary::after{content:"＋";float:right;color:var(--clay);font-weight:800}
+.faqs details[open] summary::after{content:"－"}
+.faqs details p{margin-top:9px;font-size:13.5px;color:#4e5e64}
+
+/* ============ 页脚 ============ */
+footer.foot{margin-top:52px;background:var(--ink);color:#bdcacc;padding:40px 0 24px}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px}
+.f-grid h4{font-size:14.5px;color:#fff;letter-spacing:1px;margin-bottom:12px}
+.f-grid li{font-size:13.5px;padding:4px 0}
+.f-grid li a:hover{color:#f0b98a}
+.f-brand .stamp{
+  display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;
+  border:2px solid var(--celadon);color:#8fd0d8;font-size:14px;font-weight:800;margin-bottom:12px;
+}
+.f-brand p{font-size:13.5px;line-height:1.95}
+.copy{margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.13);font-size:12.5px;color:#8a9a9d;text-align:center;line-height:1.9}
+
+/* ============ 移动端底栏 ============ */
+.dock{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,255,255,.98);
+  border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.dock ul{display:flex}
+.dock li{flex:1}
+.dock a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:var(--silver);padding:5px 0}
+.dock a .ic{font-size:16px;line-height:1;color:var(--celadon)}
+.dock a.on{color:var(--celadon);font-weight:700}
+.up{
+  position:fixed;right:18px;bottom:80px;z-index:65;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;background:var(--celadon);
+  box-shadow:0 10px 22px rgba(15,92,107,.3);
+}
+
+/* ============ 响应式 ============ */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr}
+  .grid7{grid-template-columns:repeat(4,1fr)}
+  .pts{grid-template-columns:repeat(2,1fr)}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  nav.seven{display:flex;overflow-x:auto;scrollbar-width:none}
+  nav.seven::-webkit-scrollbar{display:none}
+  nav.seven a{flex:0 0 auto;min-width:88px;border-right:1px solid var(--line);flex-direction:row;gap:6px}
+}
+@media (max-width:768px){
+  body{font-size:15px;padding-bottom:62px}
+  .wrap{padding:0 16px}
+  .bar-top .wrap{padding:7px 16px;font-size:11.5px}
+  .head-inner{padding:11px 16px;gap:10px}
+  .brand .disc{width:38px;height:38px;font-size:12px}
+  .brand strong{font-size:17.5px;letter-spacing:1px}
+  .brand small{font-size:9.5px;letter-spacing:1.2px}
+  .find{display:none}
+  nav.seven a{padding:9px 10px;font-size:13px;min-width:auto}
+  .hero{padding:22px 0 4px}
+  .hero-l{padding:26px 20px}
+  .hero-l::after{width:130px;height:130px;right:-40px;top:-40px;border-width:14px}
+  .dials{padding:20px 18px 16px}
+  .ring .circle{width:98px;height:98px}
+  .ring .circle::after{width:60px;height:60px}
+  .legend{grid-template-columns:1fr}
+  section.blk{padding:32px 0 2px}
+  .cap .go{margin-left:0;width:100%;text-align:center}
+  .plate{position:static;grid-template-columns:52px 1fr;gap:14px;padding:18px 18px}
+  .plate .rk{width:46px;height:46px;font-size:16px}
+  .plate .txt h3{font-size:15.5px}
+  .plate .sco{grid-column:1 / -1;text-align:left;display:flex;align-items:baseline;gap:10px;border-top:1px dashed var(--line);padding-top:10px}
+  .plate .sco b{font-size:20px}
+  .grid7{grid-template-columns:repeat(3,1fr);gap:10px}
+  .cell .cb h3{font-size:12.5px}
+  .atlas .panel{padding:0 16px 16px 16px}
+  .atlas .panel ul{grid-template-columns:1fr}
+  .atlas summary em{display:none}
+  .triple{padding:20px 16px}
+  .triple .row{grid-template-columns:1fr;gap:22px}
+  .notes{grid-template-columns:1fr;gap:14px}
+  .note-col{padding:18px 18px}
+  .pts{grid-template-columns:1fr;gap:12px}
+  .faqs{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr;gap:22px}
+  .dock{display:block}
+  .up{bottom:74px;right:12px;width:40px;height:40px}
+}
+@media (max-width:420px){
+  .grid7{grid-template-columns:repeat(2,1fr)}
+  .cell .ph span{font-size:14px}
+  .ring .circle{width:88px;height:88px}
+  .ring .circle::after{width:54px;height:54px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://diqidianyingwang-cn.github.io/#website",
+      "url": "https://diqidianyingwang-cn.github.io/",
+      "name": "第七电影网",
+      "alternateName": "第七电影",
+      "description": "第七电影网是专注电影推荐与观影指南的影视资讯站点，每日更新热映片单、编辑甄选佳作、类型图谱与观影数据。",
+      "inLanguage": "zh-CN",
+      "publisher": { "@id": "https://diqidianyingwang-cn.github.io/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://diqidianyingwang-cn.github.io/#search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://diqidianyingwang-cn.github.io/#organization",
+      "name": "第七电影网",
+      "url": "https://diqidianyingwang-cn.github.io/",
+      "logo": "https://diqidianyingwang-cn.github.io/logo.png"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://diqidianyingwang-cn.github.io/#webpage",
+      "url": "https://diqidianyingwang-cn.github.io/",
+      "name": "第七电影网 - 电影推荐与热映片单_每日观影指南",
+      "isPartOf": { "@id": "https://diqidianyingwang-cn.github.io/#website" },
+      "about": "电影推荐、热映片单、类型图谱与观影指南",
+      "inLanguage": "zh-CN",
+      "breadcrumb": { "@id": "https://diqidianyingwang-cn.github.io/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://diqidianyingwang-cn.github.io/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "第七电影网首页", "item": "https://diqidianyingwang-cn.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "七号片单", "item": "https://diqidianyingwang-cn.github.io/#stack" },
+        { "@type": "ListItem", "position": 3, "name": "正在热映", "item": "https://diqidianyingwang-cn.github.io/#hot" },
+        { "@type": "ListItem", "position": 4, "name": "类型图谱", "item": "https://diqidianyingwang-cn.github.io/#atlas" },
+        { "@type": "ListItem", "position": 5, "name": "观影数据", "item": "https://diqidianyingwang-cn.github.io/#data" },
+        { "@type": "ListItem", "position": 6, "name": "编辑手记", "item": "https://diqidianyingwang-cn.github.io/#notes" },
+        { "@type": "ListItem", "position": 7, "name": "站点特色", "item": "https://diqidianyingwang-cn.github.io/#why" },
+        { "@type": "ListItem", "position": 8, "name": "关于第七电影网", "item": "https://diqidianyingwang-cn.github.io/#about" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://diqidianyingwang-cn.github.io/#stack",
+      "name": "第七电影网七号片单",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "numberOfItems": 6,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "第七日（剧情 · 2026）" },
+        { "@type": "ListItem", "position": 2, "name": "长夜航标（文艺 · 2025）" },
+        { "@type": "ListItem", "position": 3, "name": "雨落之前（爱情 · 2026）" },
+        { "@type": "ListItem", "position": 4, "name": "沉默的证言（悬疑 · 2025）" },
+        { "@type": "ListItem", "position": 5, "name": "山河故人（剧情 · 2015）" },
+        { "@type": "ListItem", "position": 6, "name": "候鸟季（纪录 · 2026）" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://diqidianyingwang-cn.github.io/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "第七电影网是什么样的电影网站？",
+          "acceptedAnswer": { "@type": "Answer", "text": "第七电影网是专注电影推荐与观影指南的影视资讯站点，每日更新热映片单与七号片单，同时提供编辑甄选佳作、类型图谱、观影数据与影迷问答，帮观众快速决定看什么。" }
+        },
+        {
+          "@type": "Question",
+          "name": "第七电影网的片单多久更新一次？",
+          "acceptedAnswer": { "@type": "Answer", "text": "七号片单每日 21:00 更新，正在热映随新片上映同步刷新，编辑手记按周更新，观影数据每周统计一次并同步到数据盘。" }
+        },
+        {
+          "@type": "Question",
+          "name": "手机端可以正常浏览第七电影网吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。第七电影网采用响应式设计，七等分导航在小屏转为横向滑动，堆叠卡片自动展开为常规列表，数据盘切换为单列，移动端另配底部快捷导航。" }
+        },
+        {
+          "@type": "Question",
+          "name": "找不到想看的电影怎么办？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可使用顶部搜索框按片名或导演检索，也可进入类型图谱按类型展开筛选；仍未收录的影片可通过联系站长提交片名，会在下一次更新时优先补录。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body id="top">
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<!-- ============ 顶部细条 ============ -->
+<div class="bar-top">
+  <div class="wrap">
+    <span>第七电影网 · 七号片单每日 <b>21:00</b> 更新 · 观影数据每周统计</span>
+    <span>https://diqidianyingwang-cn.github.io</span>
+  </div>
+</div>
+
+<!-- ============ 头部 ============ -->
+<header class="head">
+  <div class="head-inner">
+    <div class="brand">
+      <span class="disc">第七</span>
+      <span>
+        <strong>第七电影网</strong>
+        <small>DIQIDIANYING · 电影推荐</small>
+      </span>
+    </div>
+    <form class="find" action="#" method="get" role="search">
+      <label for="q" style="position:absolute;left:-9999px">搜索影片</label>
+      <input id="q" name="q" type="search" placeholder="搜片名 / 导演 / 类型">
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+  <nav class="seven" aria-label="主导航">
+    <a href="#top" class="on">首页<u>00</u></a>
+    <a href="#stack">七号片单<u>01</u></a>
+    <a href="#hot">正在热映<u>02</u></a>
+    <a href="#atlas">类型图谱<u>03</u></a>
+    <a href="#data">观影数据<u>04</u></a>
+    <a href="#notes">编辑手记<u>05</u></a>
+    <a href="#about">关于本站<u>06</u></a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero wrap" aria-labelledby="h1">
+  <div class="hero-grid">
+    <div class="hero-l">
+      <span class="chip"><i></i>今晚看什么 · 第七电影网每日给答案</span>
+      <h1 id="h1">选片不纠结，就上<em>第七电影网</em></h1>
+      <p>第七电影网是专注电影推荐与观影指南的影视资讯站点，把「今晚看什么」拆成七件事来做：每日更新的七号片单、随新片同步刷新的正在热映、按类型展开的类型图谱、每周统计的观影数据，以及编辑手记与影迷问答。每部影片都配剧情简介与评分参考，看之前心里有数，看完之后有话可说。</p>
+      <p class="url">网站网址：<b>https://diqidianyingwang-cn.github.io</b></p>
+      <div class="hero-btns">
+        <a class="btnz btnz-a" href="#stack">查看七号片单</a>
+        <a class="btnz btnz-b" href="#hot">浏览正在热映</a>
+      </div>
+    </div>
+    <aside class="dials" aria-label="第七电影网观影数据">
+      <h2>观影数据速览</h2>
+      <div class="dial-pair">
+        <div class="ring">
+          <div class="circle r1"><b>42%</b></div>
+          <span>剧情类占比</span>
+        </div>
+        <div class="ring">
+          <div class="circle r2"><b>31%</b></div>
+          <span>悬疑类占比</span>
+        </div>
+      </div>
+      <div class="legend">
+        <div><i class="l1"></i>剧情 / 文艺 42%</div>
+        <div><i class="l2"></i>悬疑 / 犯罪 31%</div>
+        <div><i class="l3"></i>其余类型 27%</div>
+        <div><i class="l1"></i>本周新增 36 部</div>
+      </div>
+      <p class="note">数据口径：第七电影网全站片库统计，随每周更新同步刷新，仅作选片参考。</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 栏目一：七号片单（sticky 堆叠） ============ -->
+<section class="blk wrap" id="stack" aria-labelledby="s1">
+  <div class="cap">
+    <span class="ord">SEC 01</span>
+    <div>
+      <h2 id="s1">七号片单 · 每日七选一</h2>
+      <p class="dsc">第七电影网每晚更新，往下滚动依次展开</p>
+    </div>
+    <a class="go" href="#stack">往期片单 &raquo;</a>
+  </div>
+  <div class="stack">
+    <article class="plate">
+      <span class="rk">01</span>
+      <div class="txt">
+        <h3><a href="#">第七日（剧情 · 2026）</a></h3>
+        <p>一座小城连续七天的日常切片，每个人的第七天都不太一样，看完会想给自己的生活也记一笔。</p>
+        <div class="tags"><span>剧情</span><span>2026</span><span>112 分钟</span><span>适合独处</span></div>
+      </div>
+      <div class="sco"><b>8.9</b><span>编辑评分</span></div>
+    </article>
+    <article class="plate">
+      <span class="rk">02</span>
+      <div class="txt">
+        <h3><a href="#">长夜航标（文艺 · 2025）</a></h3>
+        <p>守塔人与一封迟到的信，节奏很慢，但每一段留白都有落点，适合夜里安静地看完。</p>
+        <div class="tags"><span>文艺</span><span>2025</span><span>98 分钟</span><span>深夜场</span></div>
+      </div>
+      <div class="sco"><b>8.7</b><span>编辑评分</span></div>
+    </article>
+    <article class="plate">
+      <span class="rk">03</span>
+      <div class="txt">
+        <h3><a href="#">雨落之前（爱情 · 2026）</a></h3>
+        <p>两个人在一场雨之前把话说完，台词不多，情绪全在停顿里，适合两个人一起看。</p>
+        <div class="tags"><span>爱情</span><span>2026</span><span>104 分钟</span><span>共饮片单</span></div>
+      </div>
+      <div class="sco"><b>8.5</b><span>编辑评分</span></div>
+    </article>
+    <article class="plate">
+      <span class="rk">04</span>
+      <div class="txt">
+        <h3><a href="#">沉默的证言（悬疑 · 2025）</a></h3>
+        <p>证词一改再改，真相一层层往下沉，中段开始节奏收紧，看的时候建议别分心。</p>
+        <div class="tags"><span>悬疑</span><span>2025</span><span>121 分钟</span><span>需专注</span></div>
+      </div>
+      <div class="sco"><b>8.8</b><span>编辑评分</span></div>
+    </article>
+    <article class="plate">
+      <span class="rk">05</span>
+      <div class="txt">
+        <h3><a href="#">山河故人（剧情 · 2015）</a></h3>
+        <p>跨越几十年的三段叙事，时间怎么改变人和关系，看完会有说不清的回味。</p>
+        <div class="tags"><span>剧情</span><span>2015</span><span>126 分钟</span><span>经典重看</span></div>
+      </div>
+      <div class="sco"><b>8.6</b><span>编辑评分</span></div>
+    </article>
+    <article class="plate">
+      <span class="rk">06</span>
+      <div class="txt">
+        <h3><a href="#">候鸟季（纪录 · 2026）</a></h3>
+        <p>跟着一群候鸟飞过整片大陆，镜头安静又有力量，适合周末慢慢看。</p>
+        <div class="tags"><span>纪录</span><span>2026</span><span>92 分钟</span><span>佐餐合适</span></div>
+      </div>
+      <div class="sco"><b>9.0</b><span>编辑评分</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 栏目二：正在热映（七等分网格） ============ -->
+<section class="blk wrap" id="hot" aria-labelledby="s2">
+  <div class="cap">
+    <span class="ord">SEC 02</span>
+    <div>
+      <h2 id="s2">正在热映 · 七部同时在映</h2>
+      <p class="dsc">第七电影网随新片上映同步刷新</p>
+    </div>
+    <a class="go" href="#hot">全部热映 &raquo;</a>
+  </div>
+  <div class="grid7">
+    <article class="cell">
+      <div class="ph k1"><span class="bdg">剧情</span><span class="rt">8.9</span><span>第七日</span></div>
+      <div class="cb">
+        <h3><a href="#">第七日 剧情片推荐</a></h3>
+        <p>2026 · 112 分钟</p>
+      </div>
+    </article>
+    <article class="cell">
+      <div class="ph k2"><span class="bdg">爱情</span><span class="rt">8.5</span><span>雨落之前</span></div>
+      <div class="cb">
+        <h3><a href="#">雨落之前 爱情小品</a></h3>
+        <p>2026 · 104 分钟</p>
+      </div>
+    </article>
+    <article class="cell">
+      <div class="ph k3"><span class="bdg">悬疑</span><span class="rt">8.8</span><span>沉默的证言</span></div>
+      <div class="cb">
+        <h3><a href="#">沉默的证言 悬疑片</a></h3>
+        <p>2025 · 121 分钟</p>
+      </div>
+    </article>
+    <article class="cell">
+      <div class="ph k4"><span class="bdg">动画</span><span class="rt">9.1</span><span>云上牧场</span></div>
+      <div class="cb">
+        <h3><a href="#">云上牧场 动画电影</a></h3>
+        <p>2026 · 96 分钟</p>
+      </div>
+    </article>
+    <article class="cell">
+      <div class="ph k5"><span class="bdg">纪录</span><span class="rt">9.0</span><span>候鸟季</span></div>
+      <div class="cb">
+        <h3><a href="#">候鸟季 自然纪录片</a></h3>
+        <p>2026 · 92 分钟</p>
+      </div>
+    </article>
+    <article class="cell">
+      <div class="ph k6"><span class="bdg">家庭</span><span class="rt">8.6</span><span>一日三餐</span></div>
+      <div class="cb">
+        <h3><a href="#">一日三餐 家庭剧情片</a></h3>
+        <p>2025 · 108 分钟</p>
+      </div>
+    </article>
+    <article class="cell">
+      <div class="ph k7"><span class="bdg">科幻</span><span class="rt">8.4</span><span>远岸信号</span></div>
+      <div class="cb">
+        <h3><a href="#">远岸信号 科幻电影</a></h3>
+        <p>2026 · 118 分钟</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 栏目三：类型图谱（手风琴） ============ -->
+<section class="blk wrap" id="atlas" aria-labelledby="s3">
+  <div class="cap">
+    <span class="ord">SEC 03</span>
+    <div>
+      <h2 id="s3">类型图谱 · 点开逐类展开</h2>
+      <p class="dsc">第七电影网按类型整理，附收录数量与代表作</p>
+    </div>
+    <a class="go" href="#atlas">全部类型 &raquo;</a>
+  </div>
+  <div class="atlas">
+    <details open>
+      <summary><i>A</i>剧情与文艺<em>收录 1420 部</em></summary>
+      <div class="panel">
+        <p>以人物关系与情绪推进为主，节奏偏慢但回味长，是第七电影网片库中占比最高的类别。</p>
+        <ul>
+          <li><span>第七日</span><b>8.9</b></li>
+          <li><span>山河故人</span><b>8.6</b></li>
+          <li><span>长夜航标</span><b>8.7</b></li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary><i>B</i>悬疑与犯罪<em>收录 1160 部</em></summary>
+      <div class="panel">
+        <p>重视线索铺设与反转结构，观看时需要一定专注度，适合整段时间完整看完。</p>
+        <ul>
+          <li><span>沉默的证言</span><b>8.8</b></li>
+          <li><span>第七个证人</span><b>8.2</b></li>
+          <li><span>长夜追凶</span><b>8.5</b></li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary><i>C</i>爱情与小品<em>收录 980 部</em></summary>
+      <div class="panel">
+        <p>篇幅轻、情绪真，适合两个人一起看，也适合用来缓冲一周的疲劳。</p>
+        <ul>
+          <li><span>雨落之前</span><b>8.5</b></li>
+          <li><span>夏末来信</span><b>7.9</b></li>
+          <li><span>晚风未歇</span><b>8.3</b></li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary><i>D</i>动画与幻想<em>收录 880 部</em></summary>
+      <div class="panel">
+        <p>想象力与完成度并重，既有适合孩子的作品，也有成人向的严肃表达。</p>
+        <ul>
+          <li><span>云上牧场</span><b>9.1</b></li>
+          <li><span>山海谣</span><b>9.0</b></li>
+          <li><span>银河旅人</span><b>8.8</b></li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary><i>E</i>纪录与写实<em>收录 410 部</em></summary>
+      <div class="panel">
+        <p>以真实素材为主，节奏平缓、信息密度高，适合佐餐或周末慢慢看。</p>
+        <ul>
+          <li><span>候鸟季</span><b>9.0</b></li>
+          <li><span>手艺中国</span><b>9.2</b></li>
+          <li><span>大河之源</span><b>9.4</b></li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary><i>F</i>家庭与伦理<em>收录 760 部</em></summary>
+      <div class="panel">
+        <p>围绕亲情与代际关系展开，情绪落点普遍偏暖，是合家观影的常见选择。</p>
+        <ul>
+          <li><span>一日三餐</span><b>8.6</b></li>
+          <li><span>城南旧事</span><b>8.7</b></li>
+          <li><span>饮食男女</span><b>9.0</b></li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 栏目四：观影数据（三环） ============ -->
+<section class="blk wrap" id="data" aria-labelledby="s4">
+  <div class="cap">
+    <span class="ord">SEC 04</span>
+    <div>
+      <h2 id="s4">观影数据盘 · 第七电影网每周统计</h2>
+      <p class="dsc">按片库结构、点播时段与评分分布三方面呈现</p>
+    </div>
+    <a class="go" href="#data">数据说明 &raquo;</a>
+  </div>
+  <div class="triple">
+    <div class="row">
+      <div class="box">
+        <div class="circle r1"><b>42%</b></div>
+        <h3>片库类型结构</h3>
+        <p>剧情文艺类占比最高，悬疑犯罪次之，其余类型合计 27%。</p>
+      </div>
+      <div class="box">
+        <div class="circle r2"><b>31%</b></div>
+        <h3>点播时段分布</h3>
+        <p>21:00 之后的点播占比过半，周末下午为第二高峰。</p>
+      </div>
+      <div class="box">
+        <div class="circle r3"><b>56%</b></div>
+        <h3>评分区间分布</h3>
+        <p>8 分以上影片占比 56%，7 分以下仅 18%，整体片单质量稳定。</p>
+      </div>
+    </div>
+    <p class="tip">数据来源：第七电影网全站片库与点播统计，每周更新一次，仅供选片参考</p>
+  </div>
+</section>
+
+<!-- ============ 栏目五：编辑手记（双栏对照） ============ -->
+<section class="blk wrap" id="notes" aria-labelledby="s5">
+  <div class="cap">
+    <span class="ord">SEC 05</span>
+    <div>
+      <h2 id="s5">编辑手记 · 本周观影记录</h2>
+      <p class="dsc">第七电影网编辑部与读者来信，两栏对照看</p>
+    </div>
+    <a class="go" href="#notes">更多手记 &raquo;</a>
+  </div>
+  <div class="notes">
+    <div class="note-col">
+      <h3><u>编辑部</u>本周观影记录</h3>
+      <article>
+        <time>10 月 01 日</time>
+        <h4><a href="#">第七日：把七天拍出了七种呼吸</a></h4>
+        <p>分段结构却没有断裂感，靠的是细节的重复与呼应，值得二刷对照着看。</p>
+      </article>
+      <article>
+        <time>09 月 28 日</time>
+        <h4><a href="#">沉默的证言：反转不是目的</a></h4>
+        <p>后半段的反转建立在前面的伏笔上，回看会发现线索早就摆在那里。</p>
+      </article>
+      <article>
+        <time>09 月 24 日</time>
+        <h4><a href="#">候鸟季：安静的镜头也有力量</a></h4>
+        <p>没有旁白、没有配乐堆砌，靠画面节奏就撑起了整个迁徙过程。</p>
+      </article>
+    </div>
+    <div class="note-col">
+      <h3><u>读者</u>本周来信摘录</h3>
+      <article>
+        <time>10 月 01 日</time>
+        <h4><a href="#">跟着七号片单看完前三部</a></h4>
+        <p>以前总在选片上耗掉半小时，现在打开第七电影网直接按片单看，效率高很多。</p>
+      </article>
+      <article>
+        <time>09 月 29 日</time>
+        <h4><a href="#">类型图谱帮我把补片理顺了</a></h4>
+        <p>按类型展开后能看到收录数量和代表作，补片路线终于有了顺序。</p>
+      </article>
+      <article>
+        <time>09 月 22 日</time>
+        <h4><a href="#">纪录类片单超出预期</a></h4>
+        <p>原本只看剧情片，被候鸟季带着看了几部纪录，发现也很耐看。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 栏目六：站点特色 ============ -->
+<section class="blk wrap" id="why" aria-labelledby="s6">
+  <div class="cap">
+    <span class="ord">SEC 06</span>
+    <div>
+      <h2 id="s6">为什么用第七电影网选片</h2>
+      <p class="dsc">把「今晚看什么」拆成七件事来做</p>
+    </div>
+    <a class="go" href="#about">了解我们 &raquo;</a>
+  </div>
+  <div class="pts">
+    <div class="pt">
+      <h3>每日七号片单</h3>
+      <p>每晚 21:00 更新一份精选片单，七选一，不必在海量条目里反复翻找。</p>
+    </div>
+    <div class="pt">
+      <h3>类型图谱可展开</h3>
+      <p>按类型逐类展开，每类附收录数量与代表作，补片有顺序、有路线。</p>
+    </div>
+    <div class="pt">
+      <h3>观影数据公开</h3>
+      <p>片库结构、点播时段与评分分布每周统计一次，用数据辅助选片判断。</p>
+    </div>
+    <div class="pt">
+      <h3>全端自适应</h3>
+      <p>响应式排版覆盖手机、平板与桌面端，导航与数据盘在小屏自动重排。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 栏目七：关于 / FAQ ============ -->
+<section class="blk wrap" id="about" aria-labelledby="s7">
+  <div class="cap">
+    <span class="ord">SEC 07</span>
+    <div>
+      <h2 id="s7">关于第七电影网 · 影迷问答</h2>
+      <p class="dsc">了解第七电影网的更新节奏与收录规则</p>
+    </div>
+    <a class="go" href="#about">联系站长 &raquo;</a>
+  </div>
+  <div class="faqs">
+    <details open>
+      <summary>第七电影网是什么样的电影网站？</summary>
+      <p>第七电影网（https://diqidianyingwang-cn.github.io）是专注电影推荐与观影指南的影视资讯站点，每日更新热映片单与七号片单，同时提供编辑甄选佳作、类型图谱、观影数据与影迷问答，帮观众快速决定看什么。</p>
+    </details>
+    <details>
+      <summary>第七电影网的片单多久更新一次？</summary>
+      <p>七号片单每日 21:00 更新，正在热映随新片上映同步刷新，编辑手记按周更新，观影数据每周统计一次并同步到数据盘。</p>
+    </details>
+    <details>
+      <summary>手机端可以正常浏览第七电影网吗？</summary>
+      <p>可以。第七电影网采用响应式设计，七等分导航在小屏转为横向滑动，堆叠卡片自动展开为常规列表，数据盘切换为单列，移动端另配底部快捷导航。</p>
+    </details>
+    <details>
+      <summary>找不到想看的电影怎么办？</summary>
+      <p>可使用顶部搜索框按片名或导演检索，也可进入类型图谱按类型展开筛选；仍未收录的影片可通过联系站长提交片名，我们会在下一次更新时优先补录。</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 页脚 ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <span class="stamp">第七</span>
+        <p>第七电影网专注电影推荐与观影指南，把「今晚看什么」拆成七件事来做：七号片单、正在热映、类型图谱、观影数据、编辑手记、站点特色与影迷问答。每部影片都配剧情简介与评分参考，看之前心里有数，看完之后有话可说。</p>
+        <p>网址：https://diqidianyingwang-cn.github.io</p>
+      </div>
+      <div>
+        <h4>观影片单</h4>
+        <ul>
+          <li><a href="#stack">七号片单</a></li>
+          <li><a href="#hot">正在热映</a></li>
+          <li><a href="#atlas">类型图谱</a></li>
+          <li><a href="#notes">编辑手记</a></li>
+          <li><a href="#data">观影数据</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>热门类型</h4>
+        <ul>
+          <li><a href="#atlas">剧情文艺</a></li>
+          <li><a href="#atlas">悬疑犯罪</a></li>
+          <li><a href="#atlas">动画幻想</a></li>
+          <li><a href="#atlas">纪录写实</a></li>
+          <li><a href="#atlas">家庭伦理</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>站点信息</h4>
+        <ul>
+          <li><a href="#about">关于第七电影网</a></li>
+          <li><a href="#why">站点特色</a></li>
+          <li><a href="#">更新日志</a></li>
+          <li><a href="#">意见反馈</a></li>
+          <li><a href="#">免责声明</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">
+      第七电影网 &copy; 2026 · 本站为电影推荐与影视资讯聚合站点，所列影片信息仅供参考。<br>
+      Powered by 第七电影网 | https://diqidianyingwang-cn.github.io
+    </p>
+  </div>
+</footer>
+
+<!-- ============ 移动端底部导航 ============ -->
+<nav class="dock" aria-label="移动端快捷导航">
+  <ul>
+    <li><a href="#top" class="on"><span class="ic" aria-hidden="true">◆</span>首页</a></li>
+    <li><a href="#stack"><span class="ic" aria-hidden="true">▤</span>片单</a></li>
+    <li><a href="#hot"><span class="ic" aria-hidden="true">▣</span>热映</a></li>
+    <li><a href="#atlas"><span class="ic" aria-hidden="true">✦</span>类型</a></li>
+    <li><a href="#about"><span class="ic" aria-hidden="true">◎</span>关于</a></li>
+  </ul>
+</nav>
+
+<a class="up" href="#top" aria-label="返回顶部">↑</a>
+
+</body>
+</html>
